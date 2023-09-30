@@ -27,7 +27,8 @@ public class Board //implements ActionListener
         field.setContentPane(panel);
         
         panel.setLayout(grid);
-       iniateBoard();
+        iniateBoard();
+        addPieces();
         
     }
 
@@ -49,6 +50,43 @@ public class Board //implements ActionListener
                 counter++;
             }
         }
+        changeBoard(); // add changes to board to start game
+    }
+
+    private void addPieces()
+    {
+        //Pawns
+        for(int i=0;i<8;i++)
+        { 
+            board_squares[1][i].setPiece(new Pawn("b"));
+            board_squares[6][i].setPiece(new Pawn("w"));
+        }
+        //Rooks
+        board_squares[0][7].setPiece(new Rook("b"));
+        board_squares[0][0].setPiece(new Rook("b"));
+        board_squares[7][0].setPiece(new Rook("w"));
+        board_squares[7][7].setPiece(new Rook("w"));
+        
+        //Knights
+        board_squares[0][1].setPiece(new Knight("b"));
+        board_squares[0][6].setPiece(new Knight("b"));
+        board_squares[7][1].setPiece(new Knight("w"));
+        board_squares[7][6].setPiece(new Knight("w"));
+
+        //Bishops
+        board_squares[0][2].setPiece(new Bishop("b"));
+        board_squares[0][5].setPiece(new Bishop("b"));
+        board_squares[7][2].setPiece(new Bishop("w"));
+        board_squares[7][5].setPiece(new Bishop("w"));
+
+        //Queens
+        board_squares[0][3].setPiece(new Queen("b"));
+        board_squares[7][3].setPiece(new Queen("w"));
+        
+        //Kings
+        board_squares[0][4].setPiece(new King("b"));
+        board_squares[7][4].setPiece(new King("w"));        
+
         changeBoard(); // add changes to board to start game
     }
 

@@ -2,8 +2,12 @@ package com.chess.app;
 
 
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.geom.AffineTransform;
 
 import javax.swing.*;
+
 public class Square
 {
 
@@ -85,6 +89,15 @@ public class Square
     public static int getTurn()     // Accesor for turn
     {
         return turn;
+    }
+
+    public void setPiece(Piece p)
+    {
+        this.piece = p;
+        Image image = piece.getIcon().getImage();
+        Image newimg = image.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        piece.setIcon(new ImageIcon(newimg));  // transform it back
+        box.setIcon(piece.getIcon());
     }
 
     /**
