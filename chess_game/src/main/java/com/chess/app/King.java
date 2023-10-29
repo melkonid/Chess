@@ -1,18 +1,19 @@
 package com.chess.app;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 
 public class King extends Piece {
 
-    public King(String color){
-        super(new ImageIcon("src\\main\\resources\\king_" + color + ".png"));
+    public King(String color,int x, int y){
+        super(new ImageIcon("src\\main\\resources\\king_" + color + ".png"),x,y,color);
     }
 
 
-    public HashMap<Integer,Integer> getLegalSquares(){
-        HashMap<Integer,Integer> legalMoves = new HashMap<Integer,Integer>();
+    public ArrayList<Position> getLegalSquares(){
+        ArrayList<Position> legalMoves = new ArrayList<Position>();
 
 
         return legalMoves;
