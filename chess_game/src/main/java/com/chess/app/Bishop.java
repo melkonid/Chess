@@ -1,7 +1,6 @@
 package com.chess.app;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 

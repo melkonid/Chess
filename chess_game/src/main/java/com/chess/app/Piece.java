@@ -1,7 +1,6 @@
 package com.chess.app;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 
@@ -10,6 +9,7 @@ public abstract class Piece {
     protected ImageIcon pieceImage;
     protected Position position;
     protected int color;
+    boolean has_moved = false;
 
     public Piece(ImageIcon i, int x, int y,String color)
     {
@@ -38,6 +38,12 @@ public abstract class Piece {
         position = p;
     }
 
+    protected boolean outOfbounds(Square[][] board_state,int x,int y)
+    {
+        if(x > 7 || x < 0 || y > 7 || y < 0) return true;
+        return false;
+    }
+
     protected boolean isPiece(Square[][] board_state,int x,int y)
     {
         //Out of bounds
@@ -48,6 +54,16 @@ public abstract class Piece {
     protected boolean isEnemyPiece(Square[][] board_state,int x,int y)
     {
         return board_state[x][y].getPiece().color != this.color;
+    }
+
+    public void moved()
+    {
+        has_moved = true;
+    }
+
+    public boolean getMoved()
+    {
+        return has_moved;
     }
     
 }

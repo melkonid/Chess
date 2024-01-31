@@ -99,15 +99,18 @@ public class Board implements ActionListener
         try{System.out.println(clicked_square.getPiece() +  "!= null && " + turnPlayer + " == " + clicked_square.getPiece().color +" && " + selected_piece +" == null" );
         }catch(Exception e){}
         //if clicked piece which is turn players
-        if(clicked_square.getPiece() != null && turnPlayer == clicked_square.getPiece().color && selected_piece == null) 
+        if(clicked_square.getPiece() != null && turnPlayer == clicked_square.getPiece().color )//&& selected_piece == null) 
         {
+            //try to remove already highlighted moves if exist
+            try{removeHighlightedMoves();}
+            catch(NullPointerException e){}
             selected_piece = clicked_square;
             highlightLegalMoves();
             return;
         }
         if(selected_piece != null && legalSquare(clicked_square)) //second click to move
         {
-            System.out.println("we legal");
+            
             movePiece(selected_piece,clicked_square);
             selected_piece = null;
             clicked_square = null;
@@ -151,6 +154,7 @@ public class Board implements ActionListener
     public void movePiece(Square selected_piece,Square move_square)
     {
         removeHighlightedMoves();
+        selected_piece.getPiece().moved();
         move_square.setPiece(selected_piece.getPiece());
         
         selected_piece.getPiece().setPosition(move_square.getPosition());

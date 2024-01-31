@@ -1,14 +1,17 @@
 package com.chess.app;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 
 public class Rook extends Piece {
 
+    private int start_x,start_y;
+
     public Rook(String color,int x, int y){
         super(new ImageIcon("src\\main\\resources\\rook_" + color + ".png"),x,y,color);
+        start_x = x;
+        start_y = y;
     }
 
 
@@ -62,5 +65,12 @@ public class Rook extends Piece {
         return legalMoves;
 
     }
+
+    public boolean castle()
+    {
+        return !has_moved && position.xLocation == start_x && position.yLocation == start_y;
+    }
+
+
     
 }
